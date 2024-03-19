@@ -12,6 +12,11 @@ class Item(BaseModel):
 app = FastAPI()
 
 
+@app.put("/items/{item_id}")
+async def update_item(item_id: int, item: Item):
+    return {"item_id": item_id, **item.dict()}
+
+
 @app.post("/items/")
 async def create_item(item: Item):
     item_dict = item.dict()
